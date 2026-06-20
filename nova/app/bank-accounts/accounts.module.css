@@ -1,0 +1,614 @@
+/* ===== ROOT VARIABLES & GLOBAL STYLES ===== */
+.accountsPage {
+  /* Colors */
+  --color-primary: #9d4edd;
+  --color-primary-hover: #b5179e;
+  --color-primary-light: rgba(157, 78, 221, 0.15);
+  --color-secondary: #00f0ff;
+  --color-secondary-hover: #00e0ef;
+  --color-secondary-light: rgba(0, 240, 255, 0.2);
+
+  --color-background: #0b0713;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-text: rgba(255, 255, 255, 0.85);
+  --color-text-light: rgba(255, 255, 255, 0.6);
+  --color-text-muted: rgba(255, 255, 255, 0.4);
+
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-light: rgba(255, 255, 255, 0.05);
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-hover: rgba(0, 0, 0, 0.5);
+
+  --color-success: #00f0ff;
+  --color-error: #ff007f;
+  --color-error-light: rgba(255, 0, 127, 0.15);
+
+  --color-avatar-bg: rgba(157, 78, 221, 0.3);
+  --color-card-border: rgba(157, 78, 221, 0.3);
+  --color-hover-bg: rgba(255, 255, 255, 0.05);
+  --color-delete-hover: rgba(255, 0, 127, 0.15);
+
+  /* Spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 0.75rem;
+  --spacing-lg: 1rem;
+  --spacing-xl: 1.5rem;
+  --spacing-2xl: 2rem;
+  --spacing-3xl: 2.5rem;
+  
+  /* Border Radius */
+  --radius-sm: 12px;
+  --radius-md: 18px;
+  --radius-lg: 25px;
+  --radius-full: 50%;
+  
+  /* Font Sizes */
+  --font-xs: 10px;
+  --font-sm: 12px;
+  --font-md: 14px;
+  --font-lg: 16px;
+  --font-xl: 18px;
+  --font-2xl: 20px;
+  --font-3xl: 22px;
+  --font-4xl: 28px;
+  
+  /* Transitions */
+  --transition-default: all 0.3s ease;
+  
+  /* Layout */
+  --card-width: 520px;
+  --card-height: 190px;
+  --form-width: 650px;
+  --avatar-size: 40px;
+
+  /* Global Layout Styles */
+  width: 100vw;
+  min-height: 100vh;
+  background: #0b0713;
+  background: radial-gradient(circle at 50% 0%, #1a0b2e 0%, #07030f 80%);
+  display: flex;
+  gap: 1.5rem;
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+  color: var(--color-white);
+}
+
+/* ===== CONTENT ===== */
+.content {
+  flex: 1;
+  padding: var(--spacing-xl) var(--spacing-2xl);
+  overflow-y: auto;
+  min-width: 0;
+}
+
+/* ===== HEADER ===== */
+.contentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+}
+
+.pageTitle {
+  font-size: var(--font-4xl);
+  font-weight: 800;
+  color: white;
+  background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.avatarPlaceholder {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(157, 78, 221, 0.3);
+  transition: border-color 0.2s;
+}
+
+.avatarPlaceholder:hover {
+  border-color: var(--color-primary);
+}
+
+/* ===== CARDS CONTAINER ===== */
+.cardsContainer {
+  margin-top: var(--spacing-3xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2xl);
+}
+
+/* ===== ACCOUNT CARD ===== */
+.accountCard {
+  width: var(--card-width);
+  max-width: 100%;
+  height: var(--card-height);
+  background: linear-gradient(135deg, #180f2d 0%, #0d081c 100%);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(157, 78, 221, 0.2);
+  position: relative;
+  transition: var(--transition-default);
+  color: var(--color-white);
+}
+
+.accountCard:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-primary);
+  box-shadow: 0 15px 30px rgba(157, 78, 221, 0.25);
+}
+
+.iconEdit,
+.iconDelete {
+  position: absolute;
+  font-size: var(--font-xl);
+  cursor: pointer;
+  transition: var(--transition-default);
+  padding: var(--spacing-xs);
+  border-radius: var(--radius-full);
+  line-height: 1;
+}
+
+.iconEdit {
+  left: var(--spacing-lg);
+  top: var(--spacing-lg);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.iconEdit:hover {
+  background: var(--color-hover-bg);
+  color: white;
+  transform: scale(1.1);
+}
+
+.iconDelete {
+  right: var(--spacing-lg);
+  top: var(--spacing-lg);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.iconDelete:hover {
+  background: var(--color-delete-hover);
+  color: #ff007f;
+  transform: scale(1.1);
+}
+
+.accountCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--spacing-lg);
+}
+
+.accountName {
+  font-weight: 700;
+  font-size: var(--font-xl);
+  margin: 0;
+  color: var(--color-white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.accountAvatar {
+  width: 100px;
+  height: 100px;
+  border-radius: var(--radius-full);
+  margin-top: var(--spacing-sm);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.accountAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.accountDetails {
+  font-size: var(--font-sm);
+  margin-top: var(--spacing-sm);
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* ===== ADD ACCOUNT CARD ===== */
+.addAccountCard {
+  width: var(--card-width);
+  max-width: 100%;
+  height: 170px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-default);
+  font-family: inherit;
+  color: var(--color-white);
+}
+
+.addAccountCard:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(157, 78, 221, 0.3);
+  box-shadow: 0 15px 30px rgba(157, 78, 221, 0.15);
+}
+
+.addAccountCard:active {
+  transform: scale(0.98);
+}
+
+.addAccountTitle {
+  font-weight: 600;
+  font-size: var(--font-xl);
+  margin-bottom: var(--spacing-xl);
+  color: var(--color-white);
+}
+
+.addAccountIcon {
+  font-size: var(--font-4xl);
+  font-weight: 300;
+  color: var(--color-white);
+  background: rgba(157, 78, 221, 0.2);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== FORM CONTAINER ===== */
+.formContainer {
+  margin-top: var(--spacing-2xl);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.formCard {
+  width: var(--form-width);
+  max-width: 100%;
+  background: rgba(20, 14, 38, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  padding: var(--spacing-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.formHeader {
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.formTitle {
+  font-size: var(--font-3xl);
+  font-weight: 800;
+  color: var(--color-white);
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xl);
+}
+
+/* ===== FORM GROUP ===== */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  position: relative;
+}
+
+.formGroup label {
+  font-weight: 500;
+  font-size: var(--font-sm);
+  color: var(--color-text-light);
+  letter-spacing: 0.5px;
+}
+
+.formGroup input {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  font-size: var(--font-md);
+  transition: var(--transition-default);
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--color-white);
+}
+
+.formGroup input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.formGroup input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.inputDisabled {
+  background: rgba(255, 255, 255, 0.01) !important;
+  color: var(--color-text-muted) !important;
+  cursor: not-allowed;
+}
+
+.inputDisabled:focus {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  box-shadow: none !important;
+}
+
+/* ===== VALIDATION STYLES ===== */
+.inputError {
+  border-color: var(--color-error) !important;
+}
+
+.inputError:focus {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 2px var(--color-error-light) !important;
+}
+
+.fieldError {
+  color: var(--color-error);
+  font-size: var(--font-sm);
+  margin-top: var(--spacing-xs);
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== FORM ACTIONS ===== */
+.formActionsBottom {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btnCancel,
+.btnAdd,
+.btnUpdate {
+  padding: 0.65rem 1.25rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-default);
+  min-width: 120px;
+}
+
+.btnCancel {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btnCancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transform: translateY(-1px);
+}
+
+.btnAdd {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
+  color: var(--color-white);
+  box-shadow: 0 5px 15px rgba(157, 78, 221, 0.3);
+}
+
+.btnAdd:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(157, 78, 221, 0.45);
+}
+
+.btnAdd:active {
+  transform: scale(0.98);
+}
+
+.btnUpdate {
+  background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-hover) 100%);
+  color: #000;
+  box-shadow: 0 5px 15px rgba(0, 240, 255, 0.3);
+}
+
+.btnUpdate:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(0, 240, 255, 0.45);
+}
+
+.btnUpdate:active {
+  transform: scale(0.98);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .accountsPage {
+    --card-width: 100%;
+    --card-height: 160px;
+    --form-width: 100%;
+    --font-4xl: 22px;
+    --font-3xl: 20px;
+  }
+  
+  .accountsPage {
+    flex-direction: column;
+  }
+  
+  .content {
+    padding: var(--spacing-lg);
+  }
+  
+  .formCard {
+    padding: var(--spacing-xl);
+  }
+  
+  .formActionsBottom {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+  
+  .btnCancel,
+  .btnAdd,
+  .btnUpdate {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem;
+    min-width: unset;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .accountsPage {
+    --card-height: 150px;
+    --avatar-size: 35px;
+    --font-4xl: 20px;
+    --font-xl: 16px;
+    --font-3xl: 18px;
+  }
+  
+  .content {
+    padding: var(--spacing-lg);
+  }
+  
+  .contentHeader {
+    gap: var(--spacing-md);
+  }
+  
+  .headerActions {
+    gap: var(--spacing-md);
+  }
+  
+  .accountCard {
+    height: var(--card-height);
+  }
+  
+  .addAccountCard {
+    height: 140px;
+  }
+  
+  .accountAvatar {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .formCard {
+    padding: var(--spacing-lg);
+  }
+  
+  .formGroup input {
+    padding: 0.6rem 0.75rem;
+    font-size: var(--font-sm);
+  }
+  
+  .fieldError {
+    font-size: var(--font-xs);
+  }
+  
+  .iconEdit,
+  .iconDelete {
+    font-size: var(--font-lg);
+    padding: 2px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 360px) {
+  .accountsPage {
+    --card-height: 130px;
+    --font-xl: 14px;
+    --font-md: 12px;
+  }
+  
+  .accountAvatar {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .addAccountIcon {
+    font-size: var(--font-3xl);
+  }
+  
+  .formCard {
+    padding: var(--spacing-md);
+  }
+  
+  .formTitle {
+    font-size: var(--font-lg);
+  }
+  
+  .btnCancel,
+  .btnAdd,
+  .btnUpdate {
+    font-size: var(--font-sm);
+    padding: 0.5rem;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1200px) {
+  .accountsPage {
+    --card-width: 580px;
+    --card-height: 200px;
+    --form-width: 700px;
+  }
+  
+  .cardsContainer {
+    gap: var(--spacing-3xl);
+  }
+  
+  .accountAvatar {
+    width: 120px;
+    height: 120px;
+  }
+}

@@ -1,0 +1,396 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --background: #0b0713;
+  --foreground: #f3f0f7;
+  
+  --primary: #9d4edd;
+  --primary-hover: #b5179e;
+  --accent: #ff007f;
+  --accent-glow: rgba(255, 0, 127, 0.15);
+  
+  --glass-bg: rgba(18, 11, 32, 0.65);
+  --glass-border: rgba(255, 255, 255, 0.07);
+  --glass-highlight: rgba(255, 255, 255, 0.03);
+  
+  --success: #00f0ff;
+  --debit: #ff477e;
+  --credit: #00f0ff;
+  
+  --sidebar-purple: rgba(18, 10, 30, 0.9);
+  --sidebar-accent: #bf5af2;
+  
+  --card-bg: rgba(25, 16, 44, 0.7);
+  --bg-light: #160f29;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: radial-gradient(circle at 50% 0%, #1e1035 0%, var(--background) 70%);
+  color: var(--foreground);
+  font-family: 'Outfit', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.font-geist {
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Glassmorphism Styles */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 20px;
+}
+
+.bg-bg-light {
+  background-color: var(--bg-light);
+}
+
+.bg-sidebar-purple {
+  background: var(--sidebar-purple);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.text-sidebar-purple {
+  color: var(--primary);
+}
+
+/* Overriding old transfer card styles for futuristic glass card */
+.transfer-card {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5) !important;
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 100px 48px 40px !important;
+  position: relative;
+  overflow: visible;
+  border: 1px solid var(--glass-border) !important;
+}
+
+/* Input Fields Redesign */
+.underline-input {
+  width: 100%;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--foreground) !important;
+  border-radius: 12px;
+  padding: 12px 16px;
+  outline: none;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.underline-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.description-box {
+  width: 100%;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--foreground) !important;
+  padding: 12px;
+  border-radius: 12px;
+  outline: none;
+  transition: all 0.3s;
+}
+.description-box:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(157, 78, 221, 0.2);
+}
+
+/* Premium Buttons */
+.next-btn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: white !important;
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 20px rgba(157, 78, 221, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(157, 78, 221, 0.45);
+}
+.next-btn:active {
+  transform: translateY(0);
+}
+
+/* Sidebar Item Redesign */
+.sidebar-item {
+  padding: 14px 18px;
+  border-radius: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  transform: translateX(4px);
+}
+.sidebar-item .sidebar-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+}
+.sidebar-item.active {
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.25) 0%, rgba(181, 23, 158, 0.15) 100%);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  font-weight: 800;
+  color: white;
+  box-shadow: 0 10px 25px rgba(157, 78, 221, 0.15);
+  transform: translateX(6px);
+}
+.sidebar-item.active .sidebar-icon {
+  background: var(--primary);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(157, 78, 221, 0.3);
+}
+
+.icon-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Removing the forced black colors from previous light version */
+.transfer-card,
+.transfer-card * {
+  color: var(--foreground) !important;
+}
+
+.transfer-card label {
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Fix confirm illustration inner panel spacing */
+.transfer-card .bg-white {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.transfer-card h3 {
+  font-size: 26px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, #ffffff 0%, #dcd0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Large Transfer Button Glow overlay */
+.transfer-btn {
+  width: 420px;
+  max-width: 100%;
+  height: 64px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: white !important;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 15px 30px rgba(157, 78, 221, 0.35);
+  border: none;
+  margin-top: 24px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.transfer-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(157, 78, 221, 0.5);
+}
+
+main h2 {
+  color: var(--foreground) !important;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+/* Success layout styles */
+.success-check.inside-check {
+  margin: 20px auto 30px;
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
+}
+
+.success-btn {
+  width: 420px;
+  max-width: 100%;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  height: 60px;
+  border-radius: 30px;
+  color: white !important;
+  font-weight: 700;
+  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 30px rgba(157, 78, 221, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.success-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(157, 78, 221, 0.45);
+}
+
+/* Topbar icons styling */
+.topbar-icon {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  color: var(--foreground);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.topbar-icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+.topbar-icon img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Tailwind text-gray overrides to ensure full dark-mode compatibility */
+.text-gray-900, .text-gray-800, .text-gray-700 {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+.text-gray-600, .text-gray-500 {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+.text-gray-450, .text-gray-400 {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+/* Force text-black to light on dark backgrounds (excluding login artwork) */
+.text-black {
+  color: rgba(255, 255, 255, 0.95) !important;
+}
+
+/* Modal and list boxes override */
+.bg-white {
+  background-color: rgba(20, 14, 38, 0.95) !important;
+  color: #f3f0f7 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.border-gray-100, .border-gray-200 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.bg-gray-50 {
+  background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+/* Select / Option dark-mode fix */
+select,
+select option {
+  background-color: #1a1030 !important;
+  color: var(--foreground) !important;
+}
+select {
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 12px !important;
+}
+
+/* Generic label fix for forms on dark backgrounds */
+label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Placeholder text in dark mode */
+::placeholder {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Error text stays red */
+.text-red-600, .text-red-700 {
+  color: #f87171 !important;
+}
+.bg-red-100 {
+  background-color: rgba(248, 113, 113, 0.12) !important;
+}

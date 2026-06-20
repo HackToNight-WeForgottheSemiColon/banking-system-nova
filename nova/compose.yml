@@ -1,0 +1,55 @@
+# use with docker compose up --build --watch
+
+services:
+  htn26-challenge-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: htn-26-challenge-dev-container
+    env_file:
+      - server/.env
+    environment:
+      NODE_ENV: development
+      DATABASE_URL: postgresql://postgres:2007@db:5432/Nova?schema=public
+    ports:
+      - "3000:3000"
+      - "4000:4000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/server/node_modules
+      - /app/.next
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+          ignore:
+            - node_modules/
+            - .next/
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: bun.lock
+  db:
+    image: postgres:17-alpine
+    container_name: htn-26-challenge-db
+    env_file:
+      - server/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

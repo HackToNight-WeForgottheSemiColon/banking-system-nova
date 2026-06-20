@@ -1,0 +1,53 @@
+{
+  "name": "hack-to-night-2026-challenge",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n \"next,nest\" -c \"cyan,magenta\" \"npm run dev:fe\" \"npm run dev:be\"",
+    "dev:bun": "concurrently -n \"next,nest\" -c \"cyan,magenta\" \"bun run dev:fe\" \"bun run dev:be:bun\"",
+    "dev:fe": "cross-env PORT=3000 next dev --webpack",
+    "dev:be": "npm --prefix server run dev",
+    "dev:be:bun": "bun run --cwd server dev",
+    "build:fe": "next build",
+    "build:be": "npm --prefix server run build",
+    "build:be:bun": "bun run --cwd server build",
+    "build": "npm run build:be && npm run build:fe",
+    "build:bun": "bun run build:be:bun && bun run build:fe",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "postinstall": "npm --prefix server install"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^17.4.2",
+    "jsonwebtoken": "^9.0.3",
+    "next": "16.2.9",
+    "pg": "^8.22.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.16",
+    "@tailwindcss/postcss": "^4.3.1",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^20.19.43",
+    "@types/pg": "^8.20.0",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "concurrently": "^10.0.3",
+    "cross-env": "^10.1.0",
+    "lefthook": "^2.1.9",
+    "tailwindcss": "^4.3.1",
+    "typescript": "^5.9.3"
+  },
+  "ignoreScripts": [
+    "sharp",
+    "unrs-resolver"
+  ],
+  "trustedDependencies": [
+    "sharp",
+    "unrs-resolver"
+  ]
+}
